@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<script>
+
+    var Shlemazl = function (x, y) {
+        this.x = x;
+        this.y = y;
+        this.speed = 5;
+        this.draw();
+    };
+    Shlemazl.prototype.draw = function () {
+
+        var shlemazlHtml = '<img class="shlemazl" id="shlemazl" src="img/shlemazl.png">';
+
+        this.shlemazlElement = $(shlemazlHtml);
+
+        this.shlemazlElement.css({
+            position: "absolute",
+            left: this.x,
+            top: this.y
+        });
+        $('body').append(this.shlemazlElement);
+    };
+    Shlemazl.prototype.moveRight = function () {
+        this.x += this.speed;
+
+        this.shlemazlElement.css({
+            left: this.x,
+            top: this.y
+        });
+    };
+    Shlemazl.prototype.moveLeft = function () {
+        this.x -= this.speed;
+
+        this.shlemazlElement.css({
+            left: this.x,
+            top: this.y
+        });
+    };
+    Shlemazl.prototype.moveUp = function () {
+        this.y -= this.speed;
+
+        this.shlemazlElement.css({
+            left: this.x,
+            top: this.y
+        });
+    };
+    Shlemazl.prototype.moveDown = function () {
+        this.y += this.speed;
+
+        this.shlemazlElement.css({
+            left: this.x,
+            top: this.y
+        });
+    };
+    var Shmulik = new Shlemazl(300, 200);
+    var keyNamews = {
+        32: 'space',
+        37: 'left',
+        38: 'up',
+        39: 'right',
+        40: 'down'
+    };
+    $('body').keydown(function (event) {
+        switch (event.keyCode) {
+            case 37:
+                Shmulik.moveLeft();
+                console.log(event.keyCode);
+                break;
+            case 38:
+                Shmulik.moveUp();
+                console.log(event.keyCode);
+                break;
+            case 39:
+                Shmulik.moveRight();
+                console.log(event.keyCode);
+                break;
+            case 40:
+                Shmulik.moveDown();
+                console.log(event.keyCode);
+                break;
+            default:
+                alert("Get away your monkey! use only arrows");
+        }
+    });
+
+
+</script>
+</body>
+</html>
